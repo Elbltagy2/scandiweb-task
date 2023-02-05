@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './code.css';
 import axios from "axios";
-import PopUpWindow from "./snakebar";
+
 const AddProduct = () => {
   const [product, setProduct] = useState({
     sku: "",

@@ -33,9 +33,14 @@ function ProductList() {
     setAllProducts([...allProducts, { name: 'New Product', price: 25 }]);
   };
 
-  const handleDeleteProduct = () => {
-    const res = axios.patch("http://localhost:8080/scandiweb-task/backend/core/",{selectedProducts}).then(res=>{
-      setAllProducts(res.data);
+  const handleDeleteProduct = async() => {
+    var send=[];
+    selectedProducts.forEach(element => {
+      send.push(element.SKU);
+    });
+   await console.log(send);
+    const res = await axios.patch("http://localhost:8080/scandiweb-task/backend/core/",{send}).then(res=>{
+    
       console.log(res.data);
      })
      .catch(err=>
@@ -43,7 +48,8 @@ function ProductList() {
      );
     setAllProducts(allProducts.filter((p) => !selectedProducts.includes(p)));
     selectedProducts=[];
-    
+    send=[];
+
   };
 
   return (
@@ -65,7 +71,7 @@ function ProductList() {
             <h2 className="product-name">SKU:{product.SKU}</h2>
             <p className="product-price">NAME :{product.name}</p>
             <p className="product-price">PRICE :{product.price} $</p>
-            <p className="product-price">{product.type==2?"diemtions":product.type==1?"size":"width"} :{product.attributes}</p>
+            <p className="product-price">{product.type===2?"diemtions":product.type===1?"size":"width"} :{product.attributes}</p>
 
 
 

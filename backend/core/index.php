@@ -1,6 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Methods: *");
 
 include './ProductList.php';
  $method = $_SERVER['REQUEST_METHOD'];
@@ -17,8 +18,8 @@ if($method=="POST"){
 }
 if ($method=="GET"){
 (new ProductList) -> show();}
-if ($method=="patch"){
-    (new ProductList) -> delete();
+if ($method=="PATCH"){
+    (new ProductList) -> delete($user);
 }
 
 
