@@ -1,66 +1,167 @@
-import React from 'react'
-import { useState } from 'react'
-import { DVD } from './DVD';
-import { Book } from './Book';
-import { Furniture } from './Furniture';
+import React, { useState } from "react";
+import './code.css';
+import axios from "axios";
+import PopUpWindow from "./snakebar";
+const AddProduct = () => {
+  const [product, setProduct] = useState({
+    sku: "",
+    price: "",
+    name: "",
+    type: ""
+  });
 
-function Add () {
-    const[Sku,setSku]=useState("");
-    const[name,setname]=useState("");
-    const[price,setprice]=useState(0);
-    const[type,settype]=useState("");
-    const[size,setsize]=useState(0);
-    const[height,setheight]=useState(0);
-    const[width,setwidth]=useState(0);
-    const[lenght,setlenght]=useState(0);
-    const[weight,setweight]=useState(0);
+  const [additionalInput, setAdditionalInput] = useState({
+    size: "",
+    weight: "",
+    width: "",
+    height: "",
+    length: ""
+  });
+  const[message,setmessage]=useState("");
+  const[open,setopen]=useState("");
+
+  const handleChange = event => {
+    setProduct({ ...product, [event.target.name]: event.target.value });
+  };
+
+  const handleAdditionalInput = event => {
+    setAdditionalInput({ ...additionalInput, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    const res = axios.post("http://localhost:8080/scandiweb-task/backend/core/",{product,additionalInput}).then(res=>{
+      console.log(res.data.message);
+
+     })
+     .catch(err=>
+      {console.log(err)}
+     );
+    // Add code to submit the product to the database or API here
+  };
+
   return (
+    <div className="add-product">
+      <form onSubmit={handleSubmit} id="#product_form">
+        <div className="form-input">
+          <label htmlFor="sku">SKU:</label>
+          <input
+            type="text"
+            id="#sku"
+            name="sku"
+            value={product.sku}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-input">
+          <label htmlFor="price">Price:</label>
+          <input
+            type="text"
+            id="#price"
+            name="price"
+            value={product.price}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-input">
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="#name"
+            name="name"
+            value={product.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-input">
+          <label htmlFor="type">Type:</label>
+          <select
+            id="#productType"
+            name="type"
+            value={product.type}
+            onChange={handleChange}
+          >
+            <option value="">Please select</option>
+            <option value="0">DVD</option>
+            <option value="1">Book</option>
+            <option value="2">Furniture</option>
+          </select>
+          
+        </div>
+        {product.type === "0" && (
+          <div className="form-input" id="#DVD">
+            <label htmlFor="size">Size:</label>
+            <input
+              type="text"
+              id="#size"
+              name="size"
+              value={additionalInput.size}
+              onChange={handleAdditionalInput}
+              required
+            />
+          </div>
+        )}
+{product.type === "1" && (
+<div className="form-input" id ="#Book">
+<label htmlFor="weight">Weight:</label>
+<input
+           type="text"
+           id="#weight"
+           name="weight"
+           value={additionalInput.weight}
+           onChange={handleAdditionalInput}
+           required
+         />
+</div>
+)}
+{product.type === "2" && (
+<React.Fragment>
+<div id="#Furniture">
+<div className="form-input">
+<label htmlFor="width">Width:</label>
+<input
+     type="text"
+     id="#width"
+     name="width"
+     value={additionalInput.width}
+     onChange={handleAdditionalInput}
+     required
+   />
+</div>
+<div className="form-input">
+<label htmlFor="height">Height:</label>
+<input
+     type="text"
+     id="#height"
+     name="height"
+     value={additionalInput.height}
+     onChange={handleAdditionalInput}
+     required
+   />
+</div>
+<div className="form-input" >
+<label htmlFor="length">Length:</label>
+<input
+     type="text"
+     id="#length"
+     name="length"
+     value={additionalInput.length}
+     onChange={handleAdditionalInput}
+     required
+   />
+</div>
+</div>
+</React.Fragment>
+)}
+<button type="submit">Add Product</button>
+<button type="cancel">Cancel</button>
+</form>
 
-    <div>
-    <h1 ><p className="ms-3  .text-primary ">Product Add</p></h1>
-    <div className="float-end">
-    <button type="button" className="btn btn-primary ">ADD</button>
-    <button type="button" className="btn btn-danger ms-1 me-1">CANCEL</button>
-    <br></br>
-    </div>
-    <form className="m-3 w-50 #Product_form"  id ="#product_form">
-  <div className="m-3">
-    <label  className="#Sku-label">#Sku:</label>
-    <input  type="text" className="#Sku-control ms-4" id="#Sku" placeholder="Enter SKU" onChange={(e)=>{ setSku(e.target.value)}} />
-  </div>
-  <div className="#Name m-3">
-    <label  className="#Name">#Name:</label>
-    <input type="text" className="#Name-control ms-2"  placeholder="Enter Name"  id ="#name" onChange={(e)=>{setname(e.target.value)}} />
-  </div>
-  <div className="m-3 #Price">
-    <label  className="#Price">#Price:</label>
-    <input type="text" className="#Price ms-3 "  placeholder="Enter Price" id ="#price" onChange={(e)=>{setprice(e.target.value)}} />
-  </div>
-  <div className='m-3'>
-  <label className="#Price">#Type:</label>
+</div>
+);
+};
 
-  <select className=" w-25 ms-3" id="#productType" name="sellist1" onChange={(e)=>{settype(e.target.value)}}>
-      <option value={"DVD"}>DVD</option>
-      <option value={"Book"}>Book </option>
-      <option value={"Furniture"}>Furniture </option>
-    </select>
-    
-  </div>
-    
-  
-    <DVD type={type} setsize={setsize}/>
-   
-    <Book type={type} setweight={setweight}/>
-  
-    <Furniture type={type} setheight={setheight} setlenght={setlenght} setwidth={setwidth}/>
-
-    
-   
-</form> 
-    
-    
-    </div>
-  )
-}
-
-export default Add
+export default AddProduct;

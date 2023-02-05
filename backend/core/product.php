@@ -29,7 +29,7 @@ class Product extends QueryBuilder
 
     public function save()
     {
-        return $this->insert(array($this->sku, $this->name, $this->price, $this->type, $this->attribute));
+        return $this->insert(array($this->sku,$this->price,$this->type,$this->name, $this->attribute));
     }
 
     public function getAll()

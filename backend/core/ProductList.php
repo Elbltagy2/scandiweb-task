@@ -1,11 +1,14 @@
 <?php
-include './Product';
-include './Validator.php'
+include './product.php';
+include './Validator.php';
+
+
+
 class ProductList
 {
     public static function show()
     {
-        return response((new Product)->getAll());
+        echo json_encode((new Product)->getAll());
     }
 
     public static function add(array $inputs): void 
@@ -20,6 +23,7 @@ class ProductList
         }
 
         return response(array('status' => 'success', 'message' => 'Deleted count of products: '.count($data)));
-    }
+    }   
 
 };
+ 

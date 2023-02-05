@@ -1,5 +1,10 @@
 <?php
-include './validate'
+include './Validate.php';
+include'./Products/Book.php';
+include'./Products/Disk.php';
+include'./Products/Furniture.php';
+
+
 
 class Validator
 {
@@ -9,7 +14,8 @@ class Validator
     function __construct(array $inputs)
     {
         $this->inputs = $inputs;
-
+       
+      
         switch ($this->inputs['type']) {
             case "0":
                 $this->validate(new  Disk($this->inputs));
@@ -40,9 +46,10 @@ class Validator
         if($this->message == null)
         {
             $validate->save();
-            return response(array('status' => 'success', 'message' => 'Product added to the database'));
+            echo json_encode(array('status' => 'success', 'message' => 'Product added to the database'));
         }   
+       else{
 
-        return response(array('status' => 'danger', 'message' => $this->message));
+       echo json_encode(array('status' => 'danger', 'message' => $this->message));}
     }
 };
