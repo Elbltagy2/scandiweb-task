@@ -8,7 +8,7 @@ function ProductList() {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
-    const res = axios.get("http://localhost:8080/scandiweb-task/backend/core/").then(res=>{
+    const res = axios.get("https://elbltagy.000webhostapp.com/backend/core/").then(res=>{
       setAllProducts(res.data);
       console.log(res.data);
      })
@@ -33,24 +33,24 @@ function ProductList() {
     setAllProducts([...allProducts, { name: 'New Product', price: 25 }]);
   };
 
-  const handleDeleteProduct = async() => {
-    var send=[];
+
+  const handleDeleteProduct=(event)=> {
+     var send=[];
     selectedProducts.forEach(element => {
       send.push(element.SKU);
     });
-   await console.log(send);
-    const res = await axios.patch("http://localhost:8080/scandiweb-task/backend/core/",{send}).then(res=>{
-    
-      console.log(res.data);
-     })
-     .catch(err=>
-      {console.log(err)}
-     );
-    setAllProducts(allProducts.filter((p) => !selectedProducts.includes(p)));
-    selectedProducts=[];
-    send=[];
-
-  };
+    fetch('https://elbltagy.000webhostapp.com/backend/core/test.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: JSON.stringify(send)
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+     setAllProducts(allProducts.filter((p) => !selectedProducts.includes(p)));
+      selectedProducts=[];
+      send=[];
+  }
 
   return (
     <div className="container">

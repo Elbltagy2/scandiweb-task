@@ -1,26 +1,32 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
+header('Content-Type: application/json');
 header("Access-Control-Allow-Methods: *");
+
+header('Content-Type: application/json');
+
+//$input = json_decode(file_get_contents('php://input'), true);
+
+// Process the request data and return a response
+//echo json_encode($response);
 
 include './ProductList.php';
  $method = $_SERVER['REQUEST_METHOD'];
 $user = json_decode( file_get_contents('php://input'),true );
-//echo json_encode($method);
+
 
 
 if($method=="POST"){
- (new ProductList) -> add (array("sku"=>$user["product"]["sku"],
- "name"=>$user["product"]["name"],"price"=>$user["product"]["price"],
- "type"=>$user["product"]["type"],"size"=>$user["additionalInput"]["size"],"size"=>$user["additionalInput"]["size"]
-,"width"=>$user["additionalInput"]["width"],"length"=>$user["additionalInput"]["length"],
-"height"=>$user["additionalInput"]["height"],"weight"=>$user["additionalInput"]["weight"]));
-}
+//echo json_encode($user["0"]["name"]);
+ (new ProductList) -> add (array("sku"=>$user["0"]["sku"],
+ "name"=>$user["0"]["name"],"price"=>$user["0"]["price"],
+ "type"=>$user["0"]["type"],"size"=>$user["1"]["size"],"size"=>$user["1"]["size"]
+,"width"=>$user["1"]["width"],"length"=>$user["1"]["length"],
+"height"=>$user["1"]["height"],"weight"=>$user["1"]["weight"]));
+ }
 if ($method=="GET"){
 (new ProductList) -> show();}
-if ($method=="PATCH"){
-    (new ProductList) -> delete($user);
-}
 
 
 

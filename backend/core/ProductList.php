@@ -19,10 +19,10 @@ class ProductList
     public static function delete(array $data)
     {
         foreach ($data as $value) {
-            (new Product)->delete('sku', $value[0]);
+            (new Product)->delete('sku', $value);
         }
 
-        echo (array('status' => 'success', 'message' => 'Deleted count of products: '.count($data)));
+        echo json_encode(array('status' => 'success', 'message' => 'Deleted count of products: '.count($data)));
     }   
 
 };

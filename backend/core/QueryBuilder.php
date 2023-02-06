@@ -33,7 +33,7 @@ abstract class QueryBuilder
     {
         $this->query = 'DELETE FROM '.$this->table_name;
         $this->where($column, '=', $value);
-        echo "success";
+        
 
         return $this->bind();
     }

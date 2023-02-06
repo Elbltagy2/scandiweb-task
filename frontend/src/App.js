@@ -7,6 +7,7 @@ import DescriptionAlerts from './component/snakebar';
 function App() {
   return (
    <>
+   <AddProduct/>
    <ProductList/>
    </>
   );

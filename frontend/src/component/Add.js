@@ -3,6 +3,9 @@ import './code.css';
 import axios from "axios";
 
 const AddProduct = () => {
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
+
   const [product, setProduct] = useState({
     sku: "",
     price: "",
@@ -30,13 +33,17 @@ const AddProduct = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    const res = axios.post("http://localhost:8080/scandiweb-task/backend/core/",{product,additionalInput}).then(res=>{
-      console.log(res.data.message);
-
-     })
-     .catch(err=>
-      {console.log(err)}
-     );
+    fetch('https://elbltagy.000webhostapp.com/backend/core/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: JSON.stringify([product,additionalInput])
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+ 
+  
+     
     // Add code to submit the product to the database or API here
   };
 
