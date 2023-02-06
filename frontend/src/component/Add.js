@@ -31,6 +31,10 @@ const AddProduct = () => {
   const handleAdditionalInput = event => {
     setAdditionalInput({ ...additionalInput, [event.target.name]: event.target.value });
   };
+  const handlecancel = () => {
+    navigate('/');           
+  };
+  
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -176,8 +180,8 @@ const AddProduct = () => {
 </React.Fragment>
 )}
 <button type="submit">Add Product</button>
-<button type="cancel">Cancel</button>
 </form>
+<button type="cancel" onClick={handlecancel}>Cancel</button>
 
 </div>
 );
