@@ -2,6 +2,8 @@ import React, { useState,useEffect } from 'react';
 import 'animate.css/animate.min.css';
 import './style.css'
 import axios from 'axios'
+import { Link } from 'react-router-dom';
+
 
 
 function ProductList() {
@@ -27,13 +29,6 @@ function ProductList() {
       );
     }
   };
-
-  const handleAddProduct = () => {
-    
-    setAllProducts([...allProducts, { name: 'New Product', price: 25 }]);
-  };
-
-
   const handleDeleteProduct=(event)=> {
      var send=[];
     selectedProducts.forEach(element => {
@@ -48,8 +43,7 @@ function ProductList() {
       .then(data => console.log(data))
       .catch(error => console.error(error));
      setAllProducts(allProducts.filter((p) => !selectedProducts.includes(p)));
-      selectedProducts=[];
-      send=[];
+     setSelectedProducts([]);
   }
 
   return (
@@ -57,8 +51,12 @@ function ProductList() {
       <header className="header">
         <h1>Product List</h1>
         <div className="header-buttons">
-          <button onClick={handleAddProduct} className="add-button">Add Product</button>
-          <button onClick={handleDeleteProduct} className="delete-button">Delete Product</button>
+         
+          <Link to="/add"> <button   className="add-button">
+          ADD</button>
+          </Link>
+         
+          <button onClick={handleDeleteProduct} id ="#delete-product-btn" className="delete-button">MASS DELETE</button>
         </div>
       </header>
       <ul className="product-list">
@@ -66,6 +64,7 @@ function ProductList() {
           <li key={product.SKU} className="product-item">
             <input
               type="checkbox"
+              className='.delete-checkbox'
               onChange={(event) => handleCheckboxChange(event, product)}
             />
             <h2 className="product-name">SKU:{product.SKU}</h2>

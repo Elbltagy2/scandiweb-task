@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import './code.css';
 import axios from "axios";
-
+import { useNavigate } from 'react-router-dom';
 const AddProduct = () => {
-  const [response, setResponse] = useState(null);
+  const navigate = useNavigate();
+    const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
 
   const [product, setProduct] = useState({
@@ -31,15 +32,26 @@ const AddProduct = () => {
     setAdditionalInput({ ...additionalInput, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
+    
     fetch('https://elbltagy.000webhostapp.com/backend/core/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: JSON.stringify([product,additionalInput])
     })
-      .then(response => response.json())
-      .then(data => console.log(data))
+      .then(response => response.json()
+      )
+      .then(data => {
+        console.log(data)
+        if (data.status==="success"){
+          navigate('/');           
+
+        }else{
+          window.alert(data.message);
+        }
+        
+      })
       .catch(error => console.error(error));
  
   

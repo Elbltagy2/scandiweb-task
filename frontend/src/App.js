@@ -1,15 +1,18 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import AddProduct from './component/Add';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import ProductList from './component/List';
-import DescriptionAlerts from './component/snakebar';
+import AddProduct from './component/Add';
+
+
 function App() {
   return (
-   <>
-   <AddProduct/>
-   <ProductList/>
-   </>
+    <BrowserRouter>
+   
+      <Routes>
+        <Route exact path="/" element={<ProductList/>} />
+        <Route path="/add" element={<AddProduct/>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
