@@ -65,12 +65,12 @@ const AddProduct = () => {
 
   return (
     <div className="add-product">
-      <form onSubmit={handleSubmit} id="#product_form">
+      <form onSubmit={handleSubmit} id="product_form">
         <div className="form-input">
           <label htmlFor="sku">SKU:</label>
           <input
             type="text"
-            id="#sku"
+            id="sku"
             name="sku"
             value={product.sku}
             onChange={handleChange}
@@ -81,7 +81,7 @@ const AddProduct = () => {
           <label htmlFor="price">Price:</label>
           <input
             type="text"
-            id="#price"
+            id="price"
             name="price"
             value={product.price}
             onChange={handleChange}
@@ -92,7 +92,7 @@ const AddProduct = () => {
           <label htmlFor="name">Name:</label>
           <input
             type="text"
-            id="#name"
+            id="name"
             name="name"
             value={product.name}
             onChange={handleChange}
@@ -102,7 +102,7 @@ const AddProduct = () => {
         <div className="form-input">
           <label htmlFor="type">Type:</label>
           <select
-            id="#productType"
+            id="productType"
             name="type"
             value={product.type}
             onChange={handleChange}
@@ -119,7 +119,7 @@ const AddProduct = () => {
             <label htmlFor="size">Size:</label>
             <input
               type="text"
-              id="#size"
+              id="size"
               name="size"
               value={additionalInput.size}
               onChange={handleAdditionalInput}
@@ -132,7 +132,7 @@ const AddProduct = () => {
 <label htmlFor="weight">Weight:</label>
 <input
            type="text"
-           id="#weight"
+           id="weight"
            name="weight"
            value={additionalInput.weight}
            onChange={handleAdditionalInput}
@@ -147,7 +147,7 @@ const AddProduct = () => {
 <label htmlFor="width">Width:</label>
 <input
      type="text"
-     id="#width"
+     id="width"
      name="width"
      value={additionalInput.width}
      onChange={handleAdditionalInput}
@@ -158,7 +158,7 @@ const AddProduct = () => {
 <label htmlFor="height">Height:</label>
 <input
      type="text"
-     id="#height"
+     id="height"
      name="height"
      value={additionalInput.height}
      onChange={handleAdditionalInput}
@@ -169,7 +169,7 @@ const AddProduct = () => {
 <label htmlFor="length">Length:</label>
 <input
      type="text"
-     id="#length"
+     id="length"
      name="length"
      value={additionalInput.length}
      onChange={handleAdditionalInput}
@@ -179,7 +179,7 @@ const AddProduct = () => {
 </div>
 </React.Fragment>
 )}
-<button type="submit">Add Product</button>
+<button type="submit">Save</button>
 </form>
 <button type="cancel" onClick={handlecancel}>Cancel</button>
 

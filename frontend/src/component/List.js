@@ -56,7 +56,7 @@ function ProductList() {
           ADD</button>
           </Link>
          
-          <button onClick={handleDeleteProduct} id ="#delete-product-btn" className="delete-button">MASS DELETE</button>
+          <button onClick={handleDeleteProduct} id ="delete-product-btn" className="delete-button">MASS DELETE</button>
         </div>
       </header>
       <ul className="product-list">
@@ -64,13 +64,13 @@ function ProductList() {
           <li key={product.SKU} className="product-item">
             <input
               type="checkbox"
-              className='.delete-checkbox'
+              className='delete-checkbox'
               onChange={(event) => handleCheckboxChange(event, product)}
             />
-            <h2 className="product-name">SKU:{product.SKU}</h2>
-            <p className="product-price">NAME :{product.name}</p>
-            <p className="product-price">PRICE :{product.price} $</p>
-            <p className="product-price">{product.type===2?"diemtions":product.type===1?"size":"width"} :{product.attributes}</p>
+            <h2 className="product-name">{product.SKU}</h2>
+            <p className="product-price">{product.name}</p>
+            <p className="product-price">{product.price} $</p>
+            <p className="product-price">{product.type===2?"diemtions":product.type===0?"Size":"Weight"} :{product.attributes}</p>
 
 
 
