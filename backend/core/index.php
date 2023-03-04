@@ -21,7 +21,7 @@ if($method=="POST"){
 //echo json_encode($user["0"]["name"]);
  (new ProductList) -> add (array("sku"=>$user["0"]["sku"],
  "name"=>$user["0"]["name"],"price"=>$user["0"]["price"],
- "type"=>$user["0"]["type"],"size"=>$user["1"]["size"],"size"=>$user["1"]["size"]
+ "type"=>$user["0"]["type"],"size"=>$user["1"]["size"]
 ,"width"=>$user["1"]["width"],"length"=>$user["1"]["length"],
 "height"=>$user["1"]["height"],"weight"=>$user["1"]["weight"]));
  }

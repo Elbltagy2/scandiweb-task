@@ -36,7 +36,7 @@ const AddProduct = () => {
   const handleSubmit = async event => {
     event.preventDefault();
     
-    fetch('https://localhost/scandiweb-task/backend/core/', {
+    fetch('https://elbltagy.000webhostapp.com/backend/core/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: JSON.stringify([product,additionalInput])
