@@ -26,7 +26,7 @@ if($method=="POST"){
 "height"=>$user["1"]["height"],"weight"=>$user["1"]["weight"]));
  }
 if ($method=="GET"){
-(new ProductList) -> show();}
+    (new ProductList) -> show();}
 
 
 

@@ -4,14 +4,13 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 const AddProduct = () => {
   const navigate = useNavigate();
-    const [response, setResponse] = useState(null);
-  const [error, setError] = useState(null);
+
 
   const [product, setProduct] = useState({
     sku: "",
     price: "",
     name: "",
-    type: ""
+    type: "Disk"
   });
 
   const [additionalInput, setAdditionalInput] = useState({
@@ -21,8 +20,6 @@ const AddProduct = () => {
     height: "",
     length: ""
   });
-  const[message,setmessage]=useState("");
-  const[open,setopen]=useState("");
 
   const handleChange = event => {
     setProduct({ ...product, [event.target.name]: event.target.value });
@@ -39,7 +36,7 @@ const AddProduct = () => {
   const handleSubmit = async event => {
     event.preventDefault();
     
-    fetch('https://elbltagy.000webhostapp.com/backend/core/', {
+    fetch('https://localhost/scandiweb-task/backend/core/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: JSON.stringify([product,additionalInput])
@@ -107,14 +104,13 @@ const AddProduct = () => {
             value={product.type}
             onChange={handleChange}
           >
-            <option value="">Please select</option>
-            <option value="0">DVD</option>
-            <option value="1">Book</option>
-            <option value="2">Furniture</option>
+            <option value="Disk">DVD</option>
+            <option value="Book">Book</option>
+            <option value="Furniture">Furniture</option>
           </select>
           
         </div>
-        {product.type === "0" && (
+        {product.type === "Disk" && (
           <div className="form-input" id="#DVD">
             <label htmlFor="size">Size:</label>
             <input
@@ -127,7 +123,7 @@ const AddProduct = () => {
             />
           </div>
         )}
-{product.type === "1" && (
+{product.type === "Book" && (
 <div className="form-input" id ="#Book">
 <label htmlFor="weight">Weight:</label>
 <input
@@ -140,7 +136,7 @@ const AddProduct = () => {
          />
 </div>
 )}
-{product.type === "2" && (
+{product.type === "Furniture" && (
 <React.Fragment>
 <div id="#Furniture">
 <div className="form-input">

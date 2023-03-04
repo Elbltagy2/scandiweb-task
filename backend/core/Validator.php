@@ -14,20 +14,8 @@ class Validator
     function __construct(array $inputs)
     {
         $this->inputs = $inputs;
-       
-      
-        switch ($this->inputs['type']) {
-            case "0":
-                $this->validate(new  Disk($this->inputs));
-                break;
-            case "1":
-                $this->validate(new  Book($this->inputs));
-                break;
-            case "2":
-                $this->validate(new  Furniture($this->inputs));
-                break;
-        }
-
+        $producttype=ucfirst($this->inputs['type']);
+        $this->validate(new  $producttype($this->inputs));
     }
 
     public function validate(Validate $validate)
@@ -38,8 +26,6 @@ class Validator
             $this->message .= 'Invalid name <br>';
         if($validate->validatePrice())
             $this->message .= 'Invalid price <br>';
-        if($validate->validateType())
-            $this->message .= 'Invalid type <br>';
         if(!$validate->validateAttributes())
             $this->message .= 'Invalid attributes <br>';
 
