@@ -10,7 +10,7 @@ function ProductList() {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
-    const res = axios.get("https://localhost/scandiweb-task/backend/core/").then(res=>{
+    const res = axios.get("https://elbltagy.000webhostapp.com/backend/core/").then(res=>{
       setAllProducts(res.data);
       console.log(res.data);
      })
@@ -34,7 +34,7 @@ function ProductList() {
     selectedProducts.forEach(element => {
       send.push(element.SKU);
     });
-    fetch('https://localhost/scandiweb-task/backend/core/test.php', {
+    fetch('https://elbltagy.000webhostapp.com/backend/core/test.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: JSON.stringify(send)
